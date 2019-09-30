@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import Layout from '../../components/layout'
+import { AppContextProvider } from '../../context/appContext'
 
 class Dashboard extends Component {
     render() {
         return (
-            <Layout>
-                <div> 
-                    Dashboard
-                </div>
-            </Layout>
+            <AppContextProvider>
+                <Layout>
+                    <div> 
+                        Dashboard
+                    </div>
+                </Layout>
+            </AppContextProvider>
         )
     }
 }

@@ -1,23 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './style.scss'
+import { AppContext } from '../../context/appContext'
 
-function Navbar(props) {
-    const { match } = props
+class Navbar extends Component {
 
-    return (
-        <div className="navbar">
-            <Link to="/dashboard" className={ `item ${match.path === '/dashboard' ? 'active' : '' }`}>
-                Dashboard
-            </Link>
-            <Link to="/reports" className={ `item ${match.path === '/reports' ? 'active' : '' }`}>
-                Reports
-            </Link>
-            <Link to="/modal" className={ `item ${match.path === '/modal' ? 'active' : '' }`}>
-                Modal
-            </Link>
-        </div>
-    )
+    render(){
+        const { match } = this.props
+
+        const { toggleModal } = this.context
+
+        return (
+            <div className="navbar">
+                <Link to="/dashboard" className={ `item ${match.path === '/dashboard' ? 'active' : '' }`}>
+                    Dashboard
+                </Link>
+                <Link to="/reports" className={ `item ${match.path === '/reports' ? 'active' : '' }`}>
+                    Reports
+                </Link>
+                <a 
+                    className={ `item ${match.path === '/modal' ? 'active' : '' }`}
+                    onClick={toggleModal}
+                >
+                    Modal
+                </a>
+            </div>
+        )
+    }
+    
 }
+
+Navbar.contextType = AppContext
+
 
 export default withRouter(Navbar)
